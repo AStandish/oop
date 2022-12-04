@@ -1,6 +1,9 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-//const generateMarkdown = require("./utils/generateMarkdown.js");
+const Employee = require("./utils/Employee.js");
+const Engineer = require("./utils/Engineer.js");
+const Intern = require("./utils/Intern.js");
+const Manager = require("./utils/Manager.js");
 
 const managerQuestions = [
   {
@@ -159,7 +162,6 @@ const internQuestions = [
   },
 ];
 
-// TODO: Create a function to write README file
 function writeToFile(data) {
   return new Promise((resolve, reject) => {
     // make a readme file and add to dist folder
