@@ -1,11 +1,11 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const generateMarkdown = require("./utils/generateMarkdown.js");
+//const generateMarkdown = require("./utils/generateMarkdown.js");
 
-const questions = [
+const managerQuestions = [
   {
     type: "input",
-    name: "name",
+    name: "manager_name",
     message: "Please provide your first and last name:",
     validate: (nameInput) => {
       if (nameInput) {
@@ -18,13 +18,13 @@ const questions = [
   },
   {
     type: "input",
-    name: "employee id",
-    message: "Enter your employee ID:",
-    validate: (employeeIDInput) => {
-      if (employeeIDInput) {
+    name: "manager_id",
+    message: "Enter your manager ID:",
+    validate: (managerIDInput) => {
+      if (managerIDInput) {
         return true;
       } else {
-        console.log("Please provide your employee ID:");
+        console.log("Please provide your manager ID:");
         return false;
       }
     },
@@ -59,11 +59,45 @@ const questions = [
     type: "list",
     name: "team",
     message: "Would you like to add an engineer or intern?",
-    choices: ["engineer", "intern"],
-    when: ({ confirmTeam }) => {
-      if (confirmTeam) {
+    choices: ["engineer", "intern", "exit"],
+  },
+];
+const engineerQuestions = [
+  {
+    type: "input",
+    name: "engineer_name",
+    message: "Please provide your first and last name:",
+    validate: (nameInput) => {
+      if (nameInput) {
         return true;
       } else {
+        console.log("Please enter your name!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "engineer_id",
+    message: "Enter your engineer ID:",
+    validate: (engineerIDInput) => {
+      if (engineerIDInput) {
+        return true;
+      } else {
+        console.log("Please provide your engineer ID:");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "Enter your email address",
+    validate: (emailInput) => {
+      if (emailInput) {
+        return true;
+      } else {
+        console.log("Please provide your email:");
         return false;
       }
     },
@@ -77,6 +111,48 @@ const questions = [
         return true;
       } else {
         console.log("Please provide your GitHub username:");
+        return false;
+      }
+    },
+  },
+];
+
+const internQuestions = [
+  {
+    type: "input",
+    name: "intern_name",
+    message: "Please provide your first and last name:",
+    validate: (nameInput) => {
+      if (nameInput) {
+        return true;
+      } else {
+        console.log("Please enter your name!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "Enter your email address",
+    validate: (emailInput) => {
+      if (emailInput) {
+        return true;
+      } else {
+        console.log("Please provide your email:");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "school",
+    message: "Enter your school",
+    validate: (schoolInput) => {
+      if (schoolInput) {
+        return true;
+      } else {
+        console.log("Please provide your school:");
         return false;
       }
     },
@@ -107,17 +183,40 @@ function writeToFile(data) {
 
 // TODO: Create a function to initialize app
 function init() {
-  return inquirer.prompt(questions);
+  return inquirer.prompt(managerQuestions);
 }
 
 // Function call to initialize app
 init()
-  .then((userInput) => {
-    return generateMarkdown(userInput);
+  .then((managerAnswers) => {
+    // return (userInput);
+    console.log(managerAnswers);
+    if(managerAnswers.team === "Engineer"){
+      promptEngineerQuestions()
+    }
+    else if(managerAnswers.team === "Intern"){
+      promptInternQuestions()
+    }
+    else{
+      return;
+    }
   })
-  .then((html) => {
-    return writeToFile(html);
-  })
+  //.then((html) => {
+  //   return writeToFile(html);
+  // })
   .catch((err) => {
     console.log(err);
   });
+
+  function promptEngineerQuestions(){
+    inquirer.prompt(engineerQuestions).then((engineerAnswers)=>{
+      let engineerOBJ=
+
+    })
+  }
+
+  function promptInternQuestions(){
+    inquirer.prompt(internQuestions).then((internAnswers)=>{
+      
+    })
+  }
