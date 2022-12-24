@@ -1,18 +1,7 @@
-it("should create an object with a Github name if provided valid arguments", () => {
-  const github = new github("Sarah@github.com");
+const Engineer = require("../utils/Employee");
 
-  expect(github.github).toEqual("Sarah@github.com");
-});
-
-it("should throw an error if provided no arguments", () => {
-  const cb = () => new github();
-
-  expect(cb).toThrow();
-});
-
-it("should throw an error if 'github' is not a string", () => {
-  const cb = () => new Employee(3, 2);
-  const err = new Error("Expected parameter 'github' to be a non-empty string");
-
-  expect(cb).toThrowError(err);
+test("Can get name via getGithub()", () => {
+  const testValue = "Alice@github.com";
+  const e = new Employee(testValue);
+  expect(e.getGithub()).toBe(testValue);
 });

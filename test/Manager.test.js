@@ -1,26 +1,7 @@
-it("should throw an error if not provided an Office No", () => {
-  const cb = () => new Employee("Sarah");
-  const err = new Error(
-    "Expected parameter 'Office No' to be a non-negative number"
-  );
+const Manager = require("../utils/Employee");
 
-  expect(cb).toThrowError(err);
-});
-
-it("should throw an error if 'Office No' is not a number", () => {
-  const cb = () => new Employee("Sarah", "2");
-  const err = new Error(
-    "Expected parameter 'Office No' to be a non-negative number"
-  );
-
-  expect(cb).toThrowError(err);
-});
-
-it("should throw an error if 'Office No' is less than 0", () => {
-  const cb = () => new Employee("Sarah", -1);
-  const err = new Error(
-    "Expected parameter 'Office No' to be a non-negative number"
-  );
-
-  expect(cb).toThrowError(err);
+test("Can get name via getOfficeNo()", () => {
+  const testValue = "123";
+  const e = new Employee(testValue);
+  expect(e.getOfficeNo()).toBe(testValue);
 });
