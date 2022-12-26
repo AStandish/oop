@@ -1,4 +1,5 @@
-const Intern = require("../utils/Employee");
+const Intern = require("../utils/Intern");
+const Employee = require("../utils/Employee");
 
 test("Can get name via getSchool()", () => {
   const testValue = "UNH";

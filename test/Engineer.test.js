@@ -1,4 +1,5 @@
-const Engineer = require("../utils/Employee");
+const Engineer = require("../utils/Engineer");
+const Employee = require("../utils/Employee");
 
 test("Can get name via getGithub()", () => {
   const testValue = "Alice@github.com";

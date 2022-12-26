@@ -1,4 +1,5 @@
-const Manager = require("../utils/Employee");
+const Manager = require("../utils/Manager");
+const Employee = require("../utils/Employee");
 
 test("Can get name via getOfficeNo()", () => {
   const testValue = "123";
