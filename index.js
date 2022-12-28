@@ -193,13 +193,11 @@ init()
   .then((managerAnswers) => {
     // return (userInput);
     console.log(managerAnswers);
-    if(managerAnswers.team === "Engineer"){
-      promptEngineerQuestions()
-    }
-    else if(managerAnswers.team === "Intern"){
-      promptInternQuestions()
-    }
-    else{
+    if (managerAnswers.team === "Engineer") {
+      promptEngineerQuestions();
+    } else if (managerAnswers.team === "Intern") {
+      promptInternQuestions();
+    } else {
       return;
     }
   })
@@ -210,15 +208,12 @@ init()
     console.log(err);
   });
 
-  function promptEngineerQuestions(){
-    inquirer.prompt(engineerQuestions).then((engineerAnswers)=>{
-      let engineerOBJ=
+function promptEngineerQuestions() {
+  inquirer.prompt(engineerQuestions).then((engineerAnswers) => {
+    let engineerOBJ = new Engineer();
+  });
+}
 
-    })
-  }
-
-  function promptInternQuestions(){
-    inquirer.prompt(internQuestions).then((internAnswers)=>{
-      
-    })
-  }
+function promptInternQuestions() {
+  inquirer.prompt(internQuestions).then((internAnswers) => {});
+}
